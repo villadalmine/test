@@ -1,0 +1,17 @@
+- include: "roles/base/tasks/base-{{package_manager}}.yml"
+
+- name: Passwordless sudo
+  become: True
+  become_user: root
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%wheel' line='%wheel ALL=(ALL) NOPASSWD: ALL'"
+  when: "{{passwordless_sudo}}"
+
+- name : Create user test
+  become: True
+  become_user: root
+  user: name=test password={{password}} groups=wheel shell=/bin/bash append=yes
+
+- name: Change root password
+  become: True
+  become_user: root
+  user: name=root update_password=always password={{rootp}}

@@ -1,0 +1,18 @@
+- name: Provision Stack
+  hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    provisioner: aws
+    distribution: aws
+  vars_files:
+    - "vars_files/{{distribution}}-{{provisioner}}-vars.yml"
+    - "keys/private/aws_private.yml"
+  tasks:
+    - name: tear down old tomcat deployment
+      cloudformation:
+        stack_name: "{{stack_name}}-awsec2-dev"
+        state: "absent"
+        region: "{{ aws_region }}"
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"

@@ -1,0 +1,81 @@
+#TEST PHASE1 AWS PROVISIONING
+- hosts: localhost
+  name: Provision Stack Aws
+  connection: local
+  gather_facts: True
+  vars:
+    whoami: "{{ lookup('env','USER') }}"
+    provisioner: aws
+    distribution: aws
+    version: "ecs"
+    Distro: aws
+    app: wordpress
+    Name: "awsec2-dev"
+    stackclass: stack
+    enviroment: testing
+    appd : "devstack"
+    rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"
+  vars_files:
+    - "vars_files/{{distribution}}-{{provisioner}}-vars.yml"
+    - "keys/private/{{provisioner}}_private.yml"
+  tasks:
+    - name: Remove ssh.cfg config
+      file: path={{ sshcfgpath }} state=absent
+    - name: Run my CloudFormation stack
+      cloudformation:
+        stack_name: "{{stack_name}}-{{Name}}"
+        region: "{{ aws_region }}"
+        state: "{{ stack_state }}"
+        template: "{{rolepath}}/roles/distrostack/files/{{Distro}}{{version}}-{{app}}.yml"
+        aws_access_key: "{{ aws_access_key }}"
+        aws_secret_key: "{{ aws_secret_key }}"
+        tags:
+          Version: "{{version}}"
+          Distro: "{{Distro}}"
+          Name: "{{Distro}}{{version}}-{{app}}"
+          class: "{{stackclass}}"
+          environment: testing
+      register: "ec2_awsecs_stack"
+    - debug: var="ec2_awsecs_stack"
+    - debug: var="ec2_awsecs_stack.stack_outputs.InstanceId"
+    - debug: var="ec2_awsecs_stack.stack_outputs.PublicIP"
+    - set_fact:
+        ipaddress: "{{ec2_awsecs_stack.stack_outputs.PublicIP}}"
+    - debug: var=ipaddress
+    - include: "roles/base/tasks/sshcfg.yml"
+    - name: Wait for server to restart
+      local_action:
+        module: wait_for
+          host={{ ipaddress }}
+          port=22
+          delay=20
+          timeout=800
+    - name: Save ipAddres of {{ appd }}
+      local_action: copy content="{{ ec2_awsecs_stack.stack_outputs.PublicIP }}" dest="/Users/restaurador/violeta/repos/rino/aws/test/playbook/{{ appd }}"
+    - name: Refresh EC2 cache
+      command: /Users/restaurador/violeta/repos/rino/ansible/playbook/ec2.py --refresh-cache
+    - name: Refresh in-memory EC2 cache
+      meta: refresh_inventory
+
+
+
+
+#TEST PHASE1 APPLYING ROLE BASE
+
+- hosts: tag_Name_awsecs_wordpress
+  name: Set up instances
+  user: ec2-user
+  gather_facts: True
+  vars:
+    whoami: "{{ lookup('env','USER') }}"
+    provisioner: aws
+    distribution: aws
+    enviroment: testing
+    appd : "wordpress"
+    rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"
+  vars_files:
+    - "vars_files/{{distribution}}-{{provisioner}}-vars.yml"
+    - "keys/private/{{provisioner}}_private.yml"
+    - "vars_files/{{provisioner}}.yml"
+  roles:
+    - base

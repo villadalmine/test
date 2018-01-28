@@ -1,0 +1,9 @@
+aws_region: us-west-2
+
+# If you choose to set specifically, ENV variables are usable
+aws_access_key: aws-access-key
+aws_secret_key: aws-secret-key
+
+aws_amzn_linux_ami_id: ami-28456852
+
+aws_private_key_dir: /Users/`whoami`/tmp

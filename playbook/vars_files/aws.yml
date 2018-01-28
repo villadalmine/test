@@ -1,0 +1,6 @@
+
+package_manager: yum
+tools_install:
+  - docker
+  - mc
+with_tools: True

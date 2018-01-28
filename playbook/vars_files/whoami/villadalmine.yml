@@ -1,0 +1,3 @@
+username: restaurador
+my_ssh_pub_key: "{{ lookup('file', 'keys/public/villadalmine.pub') }}"
+shell: /bin/bash
