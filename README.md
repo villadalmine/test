@@ -21,7 +21,7 @@ Those are my personal values:
    wordpresdbpassword: xxxxxx
    mysqlrootpassword: xxxxxx
    rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"
-```
+
  * roles/distrostack/files/awsecs-wordpress.yml
    Please check the value of instance, zone, disk and others.
 
@@ -44,9 +44,10 @@ Those are my personal values:
    aws_amzn_linux_ami_id: ami-710e2414
    aws_private_key_dir: /Users/`whoami`/tmp
 
-
+```
 ##PHASE1 AWS PROVISIONING
 In this phase we create:
+```
  * Aws instance using CloudFormation
    roles/distrostack/files/awsecs-wordpress.yml
  * Vars files needed
@@ -55,14 +56,14 @@ In this phase we create:
  * roles/base/templates/sshcfg.yml
    In this file we configure ssh login in order to use ec2.py
  * We use ec2.py for dynamic host also have edited ec2.ini to filter searching
-
+```
 
 You will have ready your instance in us-east-2
 
 
 ##PHASE2 AWS BASE CONFIG AND SOFTWARE
 In this step we install and configure:
-
+```
  * Configure users and update password
  * Configure and install docker and docker-compose
  * Install and upgrade some programs for OS
@@ -71,22 +72,24 @@ In this step we install and configure:
    vars_files/aws-aws-vars.yml
    keys/private/aws_private.yml
    vars_files/aws.yml
-
+```
 
 
 
 ##PHASE3 AWS PROVISIONING
 In this stage we deploy
+```
  * We deploy locally prometheus + caddy + GRAFANA
  * Prometheus with ec2-discovery looks for deployed amazon instance using cadvisor and nodeexport
  * Using caddy to access from localhost to first discovered instance.
  * Using grafana with some templates for docker and host ammazon machine.
 
-
+```
 
 
 ##PHASE4 AWS PROVISIONING
 In this stage we deploy :
+```
  * Wordpress with docker-compose
  * Nodeexpert and cadvisor with docker-compose
  * Collect data from host and docker using previous docker
@@ -97,3 +100,4 @@ In this stage we deploy :
   keys/private/aws_private.yml
   vars_files/aws.yml
   roles/dockercompose
+```
