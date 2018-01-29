@@ -9,7 +9,7 @@
     - "vars_files/{{distribution}}-{{provisioner}}-vars.yml"
     - "keys/private/aws_private.yml"
   tasks:
-    - name: tear down old tomcat deployment
+    - name: tear down old devstack deployment
       cloudformation:
         stack_name: "{{stack_name}}-awsec2-dev"
         state: "absent"

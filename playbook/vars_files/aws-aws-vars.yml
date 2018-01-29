@@ -4,6 +4,7 @@ aws_region: "us-east-2"
 user: "ec2-user"
 newuser: "restaurador"
 sshcfgpath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook/ssh.cfg"
+commandec2: "/Users/restaurador/violeta/repos/rino/ansible/playbook/ec2.py"
 pathkeys: "/Users/restaurador/violeta/repos/rino/aws/test/playbook/keys/private/RINO_OHIO.pem"
 password: "$6$rounds=656000$SomeSalt$nCXtF9kt3CX5oIDHJRxFhzp9bMzpP0p63huFgQX8WIIa5f2XfQ8QVJMhAMM4BAPuCnvnOfMKpCOOiHR/RY0C41"
 rootp: "$6$rounds=656000$SomeSalt$nCXtF9kt3CX5oIDHJRxFhzp9bMzpP0p63huFgQX8WIIa5f2XfQ8QVJMhAMM4BAPuCnvnOfMKpCOOiHR/RY0C41"
@@ -11,3 +12,4 @@ wordpressdbdeploy: True
 nodeexportercadvisor: True
 wordpresdbpassword: testing5533
 mysqlrootpassword: testing5533
+rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"
