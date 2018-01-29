@@ -101,3 +101,20 @@ In this stage we deploy :
   vars_files/aws.yml
   roles/dockercompose
 ```
+
+# Run the stack
+```
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) pwd
+/Users/restaurador/violeta/repos/rino/aws/test/playbook
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) ansible-playbook -i ec2.py  aws-provision.yaml  -vvv
+```
+For more info check the output of stack-creation.out.
+
+# Remove the stack
+```
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) pwd
+/Users/restaurador/violeta/repos/rino/aws/test/playbook
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) ansible-playbook -i ec2.py  remove-awsecs-stack.yml -vvvv
+
+````
+For more info check the output of stack-remove.out.
