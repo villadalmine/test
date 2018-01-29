@@ -45,7 +45,7 @@ Those are my personal values:
    aws_private_key_dir: /Users/`whoami`/tmp
 
 ```
-##PHASE1 AWS PROVISIONING
+## PHASE1 AWS PROVISIONING
 In this phase we create:
 ```
  * Aws instance using CloudFormation
@@ -61,7 +61,7 @@ In this phase we create:
 You will have ready your instance in us-east-2
 
 
-##PHASE2 AWS BASE CONFIG AND SOFTWARE
+## PHASE2 AWS BASE CONFIG AND SOFTWARE
 In this step we install and configure:
 ```
  * Configure users and update password
@@ -76,7 +76,7 @@ In this step we install and configure:
 
 
 
-##PHASE3 AWS PROVISIONING
+## PHASE3 AWS PROVISIONING
 In this stage we deploy
 ```
  * We deploy locally prometheus + caddy + GRAFANA
@@ -87,7 +87,7 @@ In this stage we deploy
 ```
 
 
-##PHASE4 AWS PROVISIONING
+## PHASE4 AWS PROVISIONING
 In this stage we deploy :
 ```
  * Wordpress with docker-compose
