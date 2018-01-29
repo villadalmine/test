@@ -1,0 +1,14 @@
+
+- name: Create collect compose file
+  template: src=roles/dockercompose/templates/localprometheus-compose.yml.j2 dest="{{rolepath}}/localprometheus-compose.yml"
+
+- name: Create prometheus config  file
+  template: src=roles/dockercompose/templates/prometheus.yml.j2 dest="{{rolepath}}/roles/dockercompose/files/prometheus/prometheus.yml"
+
+- name: Create prometheus config  file
+  template: src=roles/dockercompose/templates/Caddyfile.j2 dest="{{rolepath}}/roles/dockercompose/files/caddy/Caddyfile"
+
+
+
+- name: Run Docker-compose
+  command: docker-compose -f "{{rolepath}}/localprometheus-compose.yml" up -d

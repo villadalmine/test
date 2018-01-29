@@ -1,0 +1,40 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  external_labels:
+      monitor: 'docker-host-alpha'
+rule_files:
+  - "alert.rules"
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'nodeexporter'
+    ec2_sd_configs:
+      - region: "{{ aws_region }}"
+        access_key: "{{ aws_access_key }}"
+        secret_key: "{{ aws_secret_key }}"
+        port: 9100
+    relabel_configs:
+      - source_labels: [__meta_ec2_public_ip ]
+        separator: ':'
+        target_label: __address__
+        replacement:   ${1}:9100
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+
+  - job_name: 'cadvisor'
+    ec2_sd_configs:
+      - region: "{{ aws_region }}"
+        access_key: "{{ aws_access_key }}"
+        secret_key: "{{ aws_secret_key }}"
+        port: 8080
+    relabel_configs:
+      - source_labels: [__meta_ec2_public_ip ]
+        separator: ':'
+        target_label: __address__
+        replacement:   ${1}:8080
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance

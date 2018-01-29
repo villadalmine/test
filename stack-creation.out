@@ -31,23 +31,23 @@ ok: [localhost] => {
         "output": "Stack CREATE complete",
         "stack_outputs": {
             "AZ": "us-east-2c",
-            "InstanceId": "i-0c384b6e3b605fa3f",
-            "PublicDNS": "ec2-18-218-243-71.us-east-2.compute.amazonaws.com",
-            "PublicIP": "18.218.243.71"
+            "InstanceId": "i-09616033f0853a13f",
+            "PublicDNS": "ec2-18-216-165-75.us-east-2.compute.amazonaws.com",
+            "PublicIP": "18.216.165.75"
         },
         "stack_resources": [
             {
-                "last_updated_time": "2018-01-29T14:47:52.152000+00:00",
+                "last_updated_time": "2018-01-29T16:19:40.422000+00:00",
                 "logical_resource_id": "EC2Instance",
-                "physical_resource_id": "i-0c384b6e3b605fa3f",
+                "physical_resource_id": "i-09616033f0853a13f",
                 "resource_type": "AWS::EC2::Instance",
                 "status": "CREATE_COMPLETE",
                 "status_reason": null
             },
             {
-                "last_updated_time": "2018-01-29T14:47:32.741000+00:00",
+                "last_updated_time": "2018-01-29T16:19:04.754000+00:00",
                 "logical_resource_id": "InstanceSecurityGroup",
-                "physical_resource_id": "Aws-ECS-awsec2-dev-InstanceSecurityGroup-HRYY4QKFWWTH",
+                "physical_resource_id": "Aws-ECS-awsec2-dev-InstanceSecurityGroup-1R5I4X98ZGOXG",
                 "resource_type": "AWS::EC2::SecurityGroup",
                 "status": "CREATE_COMPLETE",
                 "status_reason": null
@@ -58,12 +58,12 @@ ok: [localhost] => {
 
 TASK [debug] *******************************************************************************************************************************************************************************************************************************************************************
 ok: [localhost] => {
-    "ec2_awsecs_stack.stack_outputs.InstanceId": "i-0c384b6e3b605fa3f"
+    "ec2_awsecs_stack.stack_outputs.InstanceId": "i-09616033f0853a13f"
 }
 
 TASK [debug] *******************************************************************************************************************************************************************************************************************************************************************
 ok: [localhost] => {
-    "ec2_awsecs_stack.stack_outputs.PublicIP": "18.218.243.71"
+    "ec2_awsecs_stack.stack_outputs.PublicIP": "18.216.165.75"
 }
 
 TASK [set_fact] ****************************************************************************************************************************************************************************************************************************************************************
@@ -71,7 +71,7 @@ ok: [localhost]
 
 TASK [debug] *******************************************************************************************************************************************************************************************************************************************************************
 ok: [localhost] => {
-    "ipaddress": "18.218.243.71"
+    "ipaddress": "18.216.165.75"
 }
 
 TASK [configure sshcfg file] ***************************************************************************************************************************************************************************************************************************************************
@@ -80,7 +80,7 @@ changed: [localhost]
 TASK [Wait for server to restart] **********************************************************************************************************************************************************************************************************************************************
 ok: [localhost -> localhost]
 
-TASK [definition of 18.218.243.71] *********************************************************************************************************************************************************************************************************************************************
+TASK [definition of 18.216.165.75] *********************************************************************************************************************************************************************************************************************************************
 changed: [localhost]
 
 TASK [Save ipAddres of devstack] ***********************************************************************************************************************************************************************************************************************************************
@@ -92,85 +92,192 @@ changed: [localhost]
 PLAY [Set up instances] ********************************************************************************************************************************************************************************************************************************************************
 
 TASK [Gathering Facts] *********************************************************************************************************************************************************************************************************************************************************
-ok: [18.218.243.71]
+ok: [18.216.165.75]
 
 TASK [base : include] **********************************************************************************************************************************************************************************************************************************************************
-included: /Users/restaurador/violeta/repos/rino/aws/test/playbook/roles/base/tasks/base-yum.yml for 18.218.243.71
+included: /Users/restaurador/violeta/repos/rino/aws/test/playbook/roles/base/tasks/base-yum.yml for 18.216.165.75
 
 TASK [base : OS upgrade] *******************************************************************************************************************************************************************************************************************************************************
-ok: [18.218.243.71]
+ok: [18.216.165.75]
 
 TASK [base : Install list of packages] *****************************************************************************************************************************************************************************************************************************************
-changed: [18.218.243.71] => (item=[u'docker', u'mc', u'git'])
+changed: [18.216.165.75] => (item=[u'docker', u'mc', u'git'])
 
 TASK [base : Make sure docker is running] **************************************************************************************************************************************************************************************************************************************
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [base : Install docker-compose] *******************************************************************************************************************************************************************************************************************************************
  [WARNING]: Consider using get_url or uri module rather than running curl
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [base : Set permission to docker-compose] *********************************************************************************************************************************************************************************************************************************
  [WARNING]: Consider using file module with mode rather than running chmod
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [base : Update ec2-user to use docker] ************************************************************************************************************************************************************************************************************************************
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [base : Passwordless sudo] ************************************************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{passwordless_sudo}}
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [base : Create user test] *************************************************************************************************************************************************************************************************************************************************
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [base : Change root password] *********************************************************************************************************************************************************************************************************************************************
-changed: [18.218.243.71]
+changed: [18.216.165.75]
+
+PLAY [Provision Stack Aws] *****************************************************************************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Create collect compose file] *********************************************************************************************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Create prometheus config  file] ******************************************************************************************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Create prometheus config  file] ******************************************************************************************************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Run Docker-compose] ******************************************************************************************************************************************************************************************************************************************************
+changed: [localhost]
 
 PLAY [Set up instances] ********************************************************************************************************************************************************************************************************************************************************
 
 TASK [Gathering Facts] *********************************************************************************************************************************************************************************************************************************************************
-ok: [18.218.243.71]
+ok: [18.216.165.75]
 
 TASK [dockercompose : Create wordpress compose directory] **********************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{ wordpressdbdeploy }}
 
  [WARNING]: Consider using file module with state=directory rather than running mkdir
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [dockercompose : Create wordpress compose file] ***************************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{ wordpressdbdeploy }}
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [dockercompose : Run Docker-compose] **************************************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{ wordpressdbdeploy }}
 
  [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [dockercompose : Create collector compose directory] **********************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{ nodeexportercadvisor }}
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [dockercompose : Create collect compose file] *****************************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{ nodeexportercadvisor }}
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 TASK [dockercompose : Run Docker-compose] **************************************************************************************************************************************************************************************************************************************
  [WARNING]: when statements should not include jinja2 templating delimiters such as {{ }} or {% %}. Found: {{ nodeexportercadvisor }}
 
-changed: [18.218.243.71]
+changed: [18.216.165.75]
 
 PLAY RECAP *********************************************************************************************************************************************************************************************************************************************************************
-18.218.243.71              : ok=18   changed=14   unreachable=0    failed=0
-localhost                  : ok=13   changed=6    unreachable=0    failed=0
+18.216.165.75              : ok=18   changed=14   unreachable=0    failed=0
+localhost                  : ok=18   changed=10   unreachable=0    failed=0
 
 [I] ~/v/r/r/a/t/playbook (master ⚡☡=)
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) docker-compose -f localprometheus-compose.yml  top
+caddy
+ PID    USER   TIME                          COMMAND
+----------------------------------------------------------------------------
+31389   0      0:00   /sbin/tini -- caddy -agree --conf /etc/caddy/Caddyfile
+31564   0      0:00   caddy -agree --conf /etc/caddy/Caddyfile
+
+grafana
+ PID    USER   TIME                                                                                                                           COMMAND
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+31039   0      0:00   {setup.sh} /bin/bash /setup.sh
+31483   104    0:00   /usr/sbin/grafana-server --homepath=/usr/share/grafana --config=/etc/grafana/grafana.ini cfg:default.log.mode=console cfg:default.paths.data=/var/lib/grafana cfg:default.paths.logs=/var/log/grafana cfg:default.paths.plugins=/var/lib/grafana/plugins
+
+prometheus
+ PID    USER    TIME                                                                                                                            COMMAND
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+30961   65534   0:00   /bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --web.console.libraries=/etc/prometheus/console_libraries --web.console.templates=/etc/prometheus/consoles --storage.tsdb.retention=200h --web.enable-
+                       lifecycle
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) docker-compose -f localprometheus-compose.yml  ps
+   Name                 Command               State                                               Ports
+----------------------------------------------------------------------------------------------------------------------------------------------------
+caddy        /sbin/tini -- caddy -agree ...   Up      0.0.0.0:3000->3000/tcp, 0.0.0.0:8080->8080/tcp, 0.0.0.0:9090->9090/tcp, 0.0.0.0:9100->9100/tcp
+grafana      /setup.sh                        Up      3000/tcp
+prometheus   /bin/prometheus --config.f ...   Up      9090/tcp
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=)
+
+
+[ec2-user@ip-172-31-43-95 ~]$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
+6ff7c8eb2d7e        mysql:5.7           "docker-entrypoint..."   28 seconds ago      Up 27 seconds       3306/tcp             wordpress_mysql_1
+376648917ab2        wordpress           "docker-entrypoint..."   28 seconds ago      Up 27 seconds       0.0.0.0:80->80/tcp   wordpress_wordpress_1
+[ec2-user@ip-172-31-43-95 ~]$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                NAMES
+8ad7a19e2cd7        google/cadvisor:v0.28.3      "/usr/bin/cadvisor..."   1 second ago        Up 1 second                              cadvisor
+b1c2a3fb88ae        prom/node-exporter:v0.15.0   "/bin/node_exporte..."   1 second ago        Up 1 second                              nodeexporter
+6ff7c8eb2d7e        mysql:5.7                    "docker-entrypoint..."   33 seconds ago      Up 32 seconds       3306/tcp             wordpress_mysql_1
+376648917ab2        wordpress                    "docker-entrypoint..."   33 seconds ago      Up 32 seconds       0.0.0.0:80->80/tcp   wordpress_wordpress_1
+[ec2-user@ip-172-31-43-95 ~]$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED             STATUS              PORTS                NAMES
+8ad7a19e2cd7        google/cadvisor:v0.28.3      "/usr/bin/cadvisor..."   4 seconds ago       Up 3 seconds                             cadvisor
+b1c2a3fb88ae        prom/node-exporter:v0.15.0   "/bin/node_exporte..."   4 seconds ago       Up 4 seconds                             nodeexporter
+6ff7c8eb2d7e        mysql:5.7                    "docker-entrypoint..."   36 seconds ago      Up 35 seconds       3306/tcp             wordpress_mysql_1
+376648917ab2        wordpress                    "docker-entrypoint..."   36 seconds ago      Up 35 seconds       0.0.0.0:80->80/tcp   wordpress_wordpress_1
+[ec2-user@ip-172-31-43-95 ~]$ docker ps
+CONTAINER ID        IMAGE                        COMMAND                  CREATED              STATUS              PORTS                NAMES
+8ad7a19e2cd7        google/cadvisor:v0.28.3      "/usr/bin/cadvisor..."   About a minute ago   Up About a minute                        cadvisor
+b1c2a3fb88ae        prom/node-exporter:v0.15.0   "/bin/node_exporte..."   About a minute ago   Up About a minute                        nodeexporter
+6ff7c8eb2d7e        mysql:5.7                    "docker-entrypoint..."   About a minute ago   Up About a minute   3306/tcp             wordpress_mysql_1
+376648917ab2        wordpress                    "docker-entrypoint..."   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   wordpress_wordpress_1
+[ec2-user@ip-172-31-43-95 ~]$ cd wordpress/
+[ec2-user@ip-172-31-43-95 wordpress]$ docker-compose -f wordpress-compose.yml top
+wordpress_mysql_1
+  UID      PID    PPID   C   STIME   TTY     TIME      CMD
+------------------------------------------------------------
+libstor+   5216   5186   0   16:24   ?     00:00:00   mysqld
+
+wordpress_wordpress_1
+UID    PID    PPID   C   STIME   TTY     TIME             CMD
+----------------------------------------------------------------------
+root   5255   5207   0   16:24   ?     00:00:00   apache2 -DFOREGROUND
+33     5872   5255   0   16:24   ?     00:00:00   apache2 -DFOREGROUND
+33     5873   5255   0   16:24   ?     00:00:00   apache2 -DFOREGROUND
+33     5874   5255   0   16:24   ?     00:00:00   apache2 -DFOREGROUND
+33     5875   5255   0   16:24   ?     00:00:00   apache2 -DFOREGROUND
+33     5876   5255   0   16:24   ?     00:00:00   apache2 -DFOREGROUND
+[ec2-user@ip-172-31-43-95 wordpress]$ docker-compose -f wordpress-compose.yml ps
+        Name                       Command               State         Ports
+-----------------------------------------------------------------------------------
+wordpress_mysql_1       docker-entrypoint.sh mysqld      Up      3306/tcp
+wordpress_wordpress_1   docker-entrypoint.sh apach ...   Up      0.0.0.0:80->80/tcp
+[ec2-user@ip-172-31-43-95 wordpress]$
+
+[ec2-user@ip-172-31-43-95 wordpress]$ ls
+collector-compose.yml  wordpress-compose.yml
+[ec2-user@ip-172-31-43-95 wordpress]$ docker-compose -f collector-compose.yml top
+cadvisor
+UID    PID    PPID   C   STIME   TTY     TIME                  CMD
+--------------------------------------------------------------------------------
+root   6278   6243   2   16:24   ?     00:00:04   /usr/bin/cadvisor -logtostderr
+
+nodeexporter
+UID    PID    PPID   C   STIME   TTY     TIME                                                                          CMD
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+root   6277   6245   0   16:24   ?     00:00:00   /bin/node_exporter --path.procfs=/host/proc --path.sysfs=/host/sys --collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($|/)
+[ec2-user@ip-172-31-43-95 wordpress]$ docker-compose -f collector-compose.yml ps
+    Name                  Command               State   Ports
+-------------------------------------------------------------
+cadvisor       /usr/bin/cadvisor -logtostderr   Up
+nodeexporter   /bin/node_exporter --path. ...   Up
+[ec2-user@ip-172-31-43-95 wordpress]$

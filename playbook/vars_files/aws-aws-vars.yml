@@ -10,6 +10,7 @@ password: "$6$rounds=656000$SomeSalt$nCXtF9kt3CX5oIDHJRxFhzp9bMzpP0p63huFgQX8WII
 rootp: "$6$rounds=656000$SomeSalt$nCXtF9kt3CX5oIDHJRxFhzp9bMzpP0p63huFgQX8WIIa5f2XfQ8QVJMhAMM4BAPuCnvnOfMKpCOOiHR/RY0C41"
 wordpressdbdeploy: True
 nodeexportercadvisor: True
+localprometheus: True
 wordpresdbpassword: testing5533
 mysqlrootpassword: testing5533
 rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"

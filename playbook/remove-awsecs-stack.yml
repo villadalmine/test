@@ -16,3 +16,14 @@
         region: "{{ aws_region }}"
         aws_access_key: "{{ aws_access_key }}"
         aws_secret_key: "{{ aws_secret_key }}"
+    - name: Stop Docker-compose
+      command: docker-compose -f "{{rolepath}}/localprometheus-compose.yml" stop
+    - name: RM Docker-compose
+      command: docker-compose -f "{{rolepath}}/localprometheus-compose.yml" rm
+    - name: Dowm Docker-compose
+      command: docker-compose -f "{{rolepath}}/localprometheus-compose.yml" down
+    - name: rm volumes
+      command: docker volume rm playbook_grafana_data playbook_prometheus_data
+    - file: path={{rolepath}}/localprometheus-compose.yml state=absent
+    - file: path={{rolepath}}/roles/dockercompose/files/prometheus/prometheus.yml state=absent
+    - file: path={{rolepath}}/roles/dockercompose/files/caddy/Caddyfile state=absent

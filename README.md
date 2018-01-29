@@ -99,7 +99,7 @@ In this stage we deploy :
   vars_files/aws-aws-vars.yml
   keys/private/aws_private.yml
   vars_files/aws.yml
-  roles/dockercompose
+  roles/dockercompose/task/localprometheus
 ```
 
 # Run the stack
@@ -114,7 +114,13 @@ For more info check the output of stack-creation.out.
 ```
 [I] ~/v/r/r/a/t/playbook (master ⚡☡=) pwd
 /Users/restaurador/violeta/repos/rino/aws/test/playbook
-[I] ~/v/r/r/a/t/playbook (master ⚡☡=) ansible-playbook -i ec2.py  remove-awsecs-stack.yml -vvvv
+[I] ~/v/r/r/a/t/playbook (master ⚡☡=) ansible-playbook  remove-awsecs-stack.yml -vvvv
 
 ````
 For more info check the output of stack-remove.out.
+The local docker-compose will be deleted.
+
+### Used some links and examples
+https://github.com/stefanprodan/dockprom
+http://clavier.hatenablog.com/entry/2017/02/12/103505
+https://prometheus.io/docs/prometheus/latest/configuration/configuration/#relabel_config

@@ -51,7 +51,7 @@
           timeout=800
     - name: definition of {{ ipaddress }}
       lineinfile:
-        path: "roles/dockercompose/vars/main.yml"
+        path: "roles/dockercompose/defaults/main.yml"
         regexp: '^publicip:'
         line: "publicip: {{ ipaddress }}"
     - name: Save ipAddres of {{ appd }}
@@ -82,7 +82,34 @@
     - "vars_files/{{provisioner}}.yml"
   roles:
     - base
+
 #TEST PHASE3 DEPLOYING GRAFANA,CADDY,PROMETHEUS
+
+- hosts: localhost
+  name: Provision Stack Aws
+  connection: local
+  gather_facts: True
+  vars:
+    whoami: "{{ lookup('env','USER') }}"
+    provisioner: aws
+    distribution: aws
+    version: "ecs"
+    Distro: aws
+    app: wordpress
+    Name: "awsec2-dev"
+    stackclass: stack
+    enviroment: testing
+    appd : "devstack"
+    localprometheus: True
+    nodeexportercadvisor: False
+    wordpressdbdeploy: False
+  vars_files:
+    - "vars_files/{{distribution}}-{{provisioner}}-vars.yml"
+    - "keys/private/{{provisioner}}_private.yml"
+    - "vars_files/{{provisioner}}.yml"
+    - "roles/dockercompose/defaults/main.yml"
+  tasks:
+    - include: "roles/dockercompose/tasks/localprometheus.yml"
 
 
 
