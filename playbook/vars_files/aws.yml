@@ -3,4 +3,5 @@ package_manager: yum
 tools_install:
   - docker
   - mc
+  - git
 with_tools: True

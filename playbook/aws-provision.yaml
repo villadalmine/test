@@ -50,6 +50,11 @@
           port=22
           delay=20
           timeout=800
+    - name: definition of {{ ipaddress }}
+      lineinfile:
+        path: "roles/dockercompose/vars/main.yml"
+        regexp: '^publicip:'
+        line: "publicip: {{ ipaddress }}"
     - name: Save ipAddres of {{ appd }}
       local_action: copy content="{{ ec2_awsecs_stack.stack_outputs.PublicIP }}" dest="/Users/restaurador/violeta/repos/rino/aws/test/playbook/{{ appd }}"
     - name: Refresh EC2 cache
@@ -60,7 +65,7 @@
 
 
 
-#TEST PHASE1 APPLYING ROLE BASE
+#TEST PHASE2 APPLYING ROLE BASE
 
 - hosts: tag_Name_awsecs_wordpress
   name: Set up instances
@@ -79,3 +84,26 @@
     - "vars_files/{{provisioner}}.yml"
   roles:
     - base
+#TEST PHASE DEPLOYING GRAFANA,CADDY,PROMETHEUS
+
+
+
+#TEST PHASEx DEPLOYING WORDPRESS APP, NODEEXPOERT, CADVISOR
+
+- hosts: tag_Name_awsecs_wordpress
+  name: Set up instances
+  user: ec2-user
+  gather_facts: True
+  vars:
+    whoami: "{{ lookup('env','USER') }}"
+    provisioner: aws
+    distribution: aws
+    enviroment: testing
+    appd : "wordpress"
+    rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"
+  vars_files:
+    - "vars_files/{{distribution}}-{{provisioner}}-vars.yml"
+    - "keys/private/{{provisioner}}_private.yml"
+    - "vars_files/{{provisioner}}.yml"
+  roles:
+    - dockercompose

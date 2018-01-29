@@ -1,0 +1,8 @@
+- name: Create collector compose directory
+  command: mkdir /home/ec2-user/collector
+
+- name: Create collect compose file
+  template: src=roles/dockercompose/templates/collector-compose.yml.j2 dest=/home/ec2-user/wordpress/collector-compose.yml
+
+- name: Run Docker-compose
+  command: sudo /usr/local/bin/docker-compose -f /home/ec2-user/wordpress/collector-compose.yml up -d
