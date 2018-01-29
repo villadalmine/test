@@ -4,6 +4,7 @@ We have 4 stage to run the stack.
 ## Vars file to use:
 Those are my personal values:
 
+```
  * vars_files/aws-aws-vars.yml
    stack_name: "Aws-ECS"
    stack_state: "present"
@@ -20,7 +21,7 @@ Those are my personal values:
    wordpresdbpassword: xxxxxx
    mysqlrootpassword: xxxxxx
    rolepath: "/Users/restaurador/violeta/repos/rino/aws/test/playbook"
-
+```
  * roles/distrostack/files/awsecs-wordpress.yml
    Please check the value of instance, zone, disk and others.
 
@@ -81,7 +82,7 @@ In this stage we deploy
  * Using caddy to access from localhost to first discovered instance.
  * Using grafana with some templates for docker and host ammazon machine.
 
- 
+
 
 
 ##PHASE4 AWS PROVISIONING
