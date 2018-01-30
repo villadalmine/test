@@ -120,6 +120,16 @@ For more info check the output of stack-creation.out.
 For more info check the output of stack-remove.out.
 The local docker-compose will be deleted.
 
+#TODO
+Configure SSL/proxy or something that encrypt data where is necessary.
+Cadvisor: Configure better authentication.(http basic or digest)
+Prometheus nodeexporter/Cadvisor: create more custom rules , each collect rule as standard application rule in each case and for each OS in order to collect the same data for all enviroment.
+Configure alerts if it is necessary.
+Grafana: configure and create different dashboard accordly the enviroment.
+Maybe a federation task to scale the infra will be an option.
+Define how the apps works in each host and how we can scale it in order to determine how we can discover it and collect data to prometheus server.
+
+
 ### Used some links and examples
 https://github.com/stefanprodan/dockprom
 http://clavier.hatenablog.com/entry/2017/02/12/103505
