@@ -76,7 +76,7 @@ In this step we install and configure:
 
 
 
-## PHASE3 AWS PROVISIONING
+## PHASE3 LOCAL PROVISIONG PROMETHEUS + CADDY + GRAFANA
 In this stage we deploy
 ```
  * We deploy locally prometheus + caddy + GRAFANA
@@ -87,7 +87,7 @@ In this stage we deploy
 ```
 
 
-## PHASE4 AWS PROVISIONING
+## PHASE4 AWS WORDPRESS PROVISIONING
 In this stage we deploy :
 ```
  * Wordpress with docker-compose
